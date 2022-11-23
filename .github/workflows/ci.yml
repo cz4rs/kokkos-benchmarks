@@ -12,7 +12,7 @@ jobs:
     - name: Run stuff
       run: |-
         export FILENAME=benchmark-results-$(date +"%Y-%m-%dT%H-%M-%S").json
-        echo "::set-env name=FILENAME::$FILENAME"
+        echo "filename=$FILENAME" >> $GITHUB_ENV
         cat sample-benchmark-result.json > $FILENAME
         
     - name: Push changed file
@@ -20,7 +20,7 @@ jobs:
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
-        source_file: $FILENAME
+        source_file: ${{ env.filename }}
         destination_repo: 'cz4rs/database-repo'
         destination_branch: 'master'
         user_email: 'someone@some-mail.com'
