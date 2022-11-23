@@ -20,5 +20,6 @@ jobs:
       with:
         source_file: 'benchmark-results.json'
         destination_repo: 'cz4rs/database-repo'
+        destination_branch: 'master'
         user_email: 'someone@some-mail.com'
         user_name: 'someone'
