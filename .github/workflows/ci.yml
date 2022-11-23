@@ -11,7 +11,7 @@ jobs:
 
     - name: Run stuff
       run: |-
-        cat sample-benchmark-result.json > benchmark-results.json
+        cat sample-benchmark-result.json > benchmark-results-$(date +"%Y-%m-%dT%H-%M-%S").json
         
     - name: Push changed file
       uses: dmnemec/copy_file_to_another_repo_action@main
