@@ -11,7 +11,9 @@ jobs:
 
     - name: Run stuff
       run: |-
-        cat sample-benchmark-result.json > benchmark-results-$(date +"%Y-%m-%dT%H-%M-%S").json
+        export FILENAME=benchmark-results-$(date +"%Y-%m-%dT%H-%M-%S").json
+        echo "::set-env name=FILENAME::$FILENAME"
+        cat sample-benchmark-result.json > $FILENAME
         
     - name: Push changed file
       uses: dmnemec/copy_file_to_another_repo_action@main
@@ -19,7 +21,7 @@ jobs:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
         source_file: 'benchmark-results.json'
-        destination_repo: 'cz4rs/database-repo'
+        destination_repo: $FILENAME
         destination_branch: 'master'
         user_email: 'someone@some-mail.com'
         user_name: 'someone'
