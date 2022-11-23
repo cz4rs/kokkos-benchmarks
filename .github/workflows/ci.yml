@@ -1,0 +1,24 @@
+name: Some CI + pushing the benchmark results to another repo
+
+on: push
+
+jobs:
+  copy-file:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Run stuff
+      run: |-
+        cat sample-benchmark-result.json > benchmark-results.json
+        
+    - name: Push changed file
+      uses: ./
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source_file: 'benchmark-results.json'
+        destination_repo: 'cz4rs/database-repo'
+        user_email: 'someone@some-mail.com'
+        user_name: 'someone'
