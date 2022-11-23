@@ -20,8 +20,8 @@ jobs:
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
-        source_file: 'benchmark-results.json'
-        destination_repo: $FILENAME
+        source_file: $FILENAME
+        destination_repo: 'cz4rs/database-repo'
         destination_branch: 'master'
         user_email: 'someone@some-mail.com'
         user_name: 'someone'
